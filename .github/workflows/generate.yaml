@@ -35,6 +35,10 @@ jobs:
           --additional-properties modelPackage="models" \
           --additional-properties apiPackage="api"
 
+    - name: Go Mod Tidy
+      run: |
+        go mod tidy
+
     - name: Check for Changes
       id: check_changes
       run: |
@@ -62,6 +66,10 @@ jobs:
         if [[ "$release_output" == *"release not found"* ]]; then
           echo "Release not found. Creating a new release..."
           gh release create v$ReleaseVersion --generate-notes
+          if [ $? -ne 0 ]; then
+            echo "could not cut release for v$ReleaseVersion"
+            exit 1
+          fi
         fi
       env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
