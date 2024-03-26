@@ -42,4 +42,7 @@ jobs:
         git add .
         git commit -m "Generate API client"
         git tag v$ReleaseVersion
-        git push
+    - name: Tag
+      run: |
+        git push "v$ReleaseVersion"
+
