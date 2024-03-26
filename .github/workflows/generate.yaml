@@ -43,6 +43,3 @@ jobs:
         git commit -m "Generate API client"
         git tag v$ReleaseVersion
         git push
-        gh release create v$ReleaseVersion
-      env:
-        GH_TOKEN: ${{ github.GITHUB_TOKEN }}
