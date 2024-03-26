@@ -9,6 +9,11 @@ jobs:
   generate:
     runs-on: ubuntu-latest
 
+    inputs:
+      release_version:
+        description: 'Version for the release'
+        default: '2.0.0'
+
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
@@ -23,7 +28,7 @@ jobs:
           --git-user-id AndrewShear \
           --git-repo-id spacetraders \
           --additional-properties packageName="spacetraders" \
-          --additional-properties packageVersion="2.0.0" \
+          --additional-properties packageVersion="${{ inputs.release_version }}" \
           --additional-properties enumClassPrefix=true \
           --additional-properties structPrefix=true \
           --additional-properties withSeparateModelsAndApi=true \
@@ -36,4 +41,6 @@ jobs:
         git config --global user.name "GitHub Actions"
         git add .
         git commit -m "Generate API client"
+        git tag v${{ inputs.release_version }}
         git push
+        gh release create v${{ inputs.release_version }}
