@@ -20,7 +20,7 @@ jobs:
           -i 'https://stoplight.io/api/v1/projects/spacetraders/spacetraders/nodes/reference/SpaceTraders.json?fromExportButton=true&snapshotType=http_service&deref=optimizedBundle' \
           -g go \
           -o packages \
-          --git-user-id Gimrekt \
+          --git-user-id AndrewShear \
           --git-repo-id spacetraders \
           --additional-properties packageName="spacetraders" \
           --additional-properties packageVersion="2.0.0" \
@@ -32,7 +32,7 @@ jobs:
 
     - name: Commit and Push Generated Files
       run: |
-        git config --global user.email "github-actions@spiri.dev"
+        git config --global user.email "noreply@spiri.dev"
         git config --global user.name "GitHub Actions"
         git add .
         git commit -m "Generate API client"
