@@ -3,7 +3,7 @@ name: Generate API Client
 on:
   push:
     branches:
-      - main  # Adjust branch name if needed
+      - master
 
 jobs:
   generate:
