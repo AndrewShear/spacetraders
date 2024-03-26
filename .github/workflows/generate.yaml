@@ -55,3 +55,13 @@ jobs:
         git commit -m "Generate API client"
         git tag v$ReleaseVersion
         git push origin HEAD --tags
+
+    - name: Cut Release
+      run: |
+        release_output=$(gh release view v$ReleaseVersion)
+        if [[ "$release_output" == *"release not found"* ]]; then
+          echo "Release not found. Creating a new release..."
+          gh release create v$ReleaseVersion --generate-notes
+        fi
+      env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
