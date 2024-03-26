@@ -9,7 +9,7 @@ jobs:
   generate:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
       issues: write
     env:
       ReleaseVersion: '2.0.0'
