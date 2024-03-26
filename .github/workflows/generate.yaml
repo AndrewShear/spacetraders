@@ -58,7 +58,7 @@ jobs:
 
     - name: Cut Release
       run: |
-        release_output=$(gh release view v$ReleaseVersion)
+        release_output=$(gh release view v$ReleaseVersion 2>&1)
         if [[ "$release_output" == *"release not found"* ]]; then
           echo "Release not found. Creating a new release..."
           gh release create v$ReleaseVersion --generate-notes
