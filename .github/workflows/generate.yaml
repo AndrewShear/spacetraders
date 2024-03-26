@@ -9,6 +9,7 @@ on:
       release_version:
         description: 'Version for the release'
         default: '2.0.0'
+        type: string
 
 jobs:
   generate:
