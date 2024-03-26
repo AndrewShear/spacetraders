@@ -4,15 +4,15 @@ on:
   push:
     branches:
       - master
+  inputs:
+    release_version:
+      description: 'Version for the release'
+      default: '2.0.0'
 
 jobs:
   generate:
     runs-on: ubuntu-latest
 
-    inputs:
-      release_version:
-        description: 'Version for the release'
-        default: '2.0.0'
 
     steps:
     - name: Checkout Repository
