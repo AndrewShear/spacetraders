@@ -40,7 +40,7 @@ jobs:
       run: |
         if git diff --quiet; then
           echo "No changes to commit."
-          exit 1
+          exit 78 # Neutral status code
         else
           echo "Changes detected, proceeding with commit."
           exit 0
