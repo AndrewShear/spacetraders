@@ -35,14 +35,23 @@ jobs:
           --additional-properties modelPackage="models" \
           --additional-properties apiPackage="api"
 
+    - name: Check for Changes
+      id: check_changes
+      run: |
+        if git diff --quiet; then
+          echo "No changes to commit."
+          exit 1
+        else
+          echo "Changes detected, proceeding with commit."
+          exit 0
+        fi
+
     - name: Commit and Push Generated Files
+      if: steps.check_changes.outputs.return == '0'
       run: |
         git config --global user.email "noreply@spiri.dev"
         git config --global user.name "GitHub Actions"
         git add .
         git commit -m "Generate API client"
         git tag v$ReleaseVersion
-    - name: Tag
-      run: |
-        git push "v$ReleaseVersion"
-
+        git push origin HEAD --tags
