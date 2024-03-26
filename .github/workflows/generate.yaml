@@ -40,10 +40,10 @@ jobs:
       run: |
         if git diff --quiet; then
           echo "No changes to commit."
-          echo "::set-output name=changes::false"
+          echo "changes=false" >> $GITHUB_OUTPUT
         else
           echo "Changes detected, proceeding with commit."
-          echo "::set-output name=changes::true"
+          echo "changes=true" >> $GITHUB_OUTPUT
         fi
 
     - name: Commit and Push Generated Files
