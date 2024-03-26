@@ -59,6 +59,9 @@ jobs:
         git commit -m "Generate API client"
         git tag v$ReleaseVersion
         git push origin HEAD --tags
+        if [ $? -ne 0 ]; then 
+          echo "error pushing to origin"
+        fi
       env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
